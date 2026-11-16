@@ -100,3 +100,7 @@ th {
     padding: 5px;
     width : 100px;
 }
+
+#select_all {
+    cursor: pointer;
+}
