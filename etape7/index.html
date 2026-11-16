@@ -30,10 +30,10 @@
 
         <table>
             <tr>
-                <th class="col_number">N°</th>
-                <th class="col_text">Nom</th>
-                <th class="col_text">Prenom</th>
-                <th class="col_number">Points</th>
+                <th class="col_number sortable" onclick="doSort(0)">N°</th>
+                <th class="col_text sortable" onclick="doSort(1)">Nom</th>
+                <th class="col_text sortable" onclick="doSort(2)">Prenom</th>
+                <th class="col_number sortable" onclick="doSort(3)">Points</th>
                 <th class="col_chkbox">
                     Select <input type="checkbox" id="select_all" onclick="doSelectAll()">
                 </th>

@@ -119,3 +119,26 @@ th {
     padding: 5px;
     width : 100px;
 }
+
+#select_all {
+    cursor: pointer;
+}
+
+.sortable {
+    cursor: pointer;
+    user-select: none;  
+}      
+
+.sortable:hover {
+    background-color: #005f96; 
+}
+
+.sort_asc::after {
+    content: " ▲";
+    font-size: 10px;
+}
+
+.sort_desc::after {
+    content: " ▼";
+    font-size: 10px;
+}

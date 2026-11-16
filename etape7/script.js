@@ -234,3 +234,81 @@ function doSelectAll(){
     }
 
 }
+
+//etape 7 2end function
+let sortColumn = -1;     // the column currently sorted (-1 = none)
+let sortAsc = true;      // true = ascending, false = descending
+
+function doSort(column) {
+
+    //slide 42 les conditions if..else
+    // Same column: reverse the direction. New column: start ascending.
+    if (sortColumn === column) {
+        sortAsc = !sortAsc;
+    } else {
+        sortColumn = column;
+        sortAsc = true;
+    }
+
+    //slide 76 l'utilisation de querySelector
+    const table = document.querySelector("#table_container table");
+
+    // Array.from converts the NodeList to a real array
+    //slide 76 l'utilisation de querySelectorAll
+    const rows = Array.from(table.querySelectorAll("tr.row"));
+
+    //function sort that already exist
+    //slide 42 les conditions if..else
+    rows.sort(function (a, b) {
+
+        const x = a.getElementsByTagName("td")[column].innerText;
+        const y = b.getElementsByTagName("td")[column].innerText;
+
+        let result;
+        if (column === 0 || column === 3) {
+            result = parseInt(x) - parseInt(y);     // numbers
+        } else {
+            result = x.localeCompare(y);            // text
+        }
+
+        return sortAsc ? result : -result;
+    });
+
+    // Put the rows back in the new order (appendChild moves them)
+    //slide 44 l'utlisation de la boucle for of
+    for (let row of rows) {
+        //slide 104 l'utilisation de appendChild()
+        row.parentNode.appendChild(row);
+    }
+
+    // Keep the persons array in the same order as the table for the button supprimer
+    persons.length = 0;
+    //slide 44 l'utlisation de la boucle for of
+    for (let row of rows) {
+        //slide 66 l'utilisation de la methode getElementsByTagName()
+        const cells = row.getElementsByTagName("td");
+        //slide 38 l'utilisation de la methode push
+        persons.push({
+            nom: cells[1].innerText,
+            prenom: cells[2].innerText,
+            points: parseInt(cells[3].innerText)
+        });
+    }
+
+    updateSortArrows(table, column);
+}
+
+function updateSortArrows(table, column) {
+
+    //slide 76 l'utilisation de querySelectorAll
+    const headers = table.querySelectorAll("th.sortable");
+
+    //slide 44 l'utlisation de la boucle for of
+    for (let th of headers) {
+        //slide 108 l'utilisation de la methode classList.remove()
+        th.classList.remove("sort_asc", "sort_desc");
+    }
+
+    //slide 108 l'utilisation de la methode classList.add()
+    headers[column].classList.add(sortAsc ? "sort_asc" : "sort_desc");
+}
