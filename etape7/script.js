@@ -3,6 +3,9 @@
 //Slide 38 la declaration des variable et des constants 
 let lignes = 0;
 let total_points = 0;
+let moyenne = 0;
+let min = 20;
+let max = 0;
 
 // Slide 41: Tableau d'objets Persons
 const persons = [
@@ -30,7 +33,16 @@ function doInsert(nom, prenom, points){
 
     //slide 41 les operation arithmitques
     total_points = total_points + points;
+    moyenne = (moyenne * lignes + points)/(lignes + 1)
     lignes++;
+    if(points < min){
+        min = points;
+    }
+    if(points > max){
+        max = points;
+    }
+    
+
     doInsertRowTable(lignes, nom, prenom, points);
     update_summary();
 }
@@ -106,15 +118,20 @@ function ConsoleTableau(){
 //Slide 46 Declaration de fonction
 function update_summary(){
     
-    //recuperation de l'element avec id = p1
+    //recuperation de l'element avec id = p1,p2,p3,p4,p5
     //slide 62 recuperation d'un element par identifiant
     const element_lignes = document.getElementById("p1");
-    //recuperation de l'element avec id = p3
     const element_points = document.getElementById("p3");
+    const element_moyenne = document.getElementById("p2");
+    const element_min = document.getElementById("p5")
+    const element_max = document.getElementById("p4")
 
     //slide 91 l'utlisation de innerText
     element_lignes.innerText = lignes + " ligns(s)";
     element_points.innerText = "Totale point(S)= " +total_points ;
+    element_min.innerText = "Min= " +min;
+    element_max.innerText = "Max=" + max ;
+    element_moyenne.innerText = "Moyenne= " + moyenne;
 }
 
 //Slide 46 Declaration de fonction
