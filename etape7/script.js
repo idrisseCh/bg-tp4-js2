@@ -42,6 +42,7 @@ function doInsert(nom, prenom, points){
         max = points;
     }
     
+    
 
     doInsertRowTable(lignes, nom, prenom, points);
     update_summary();
